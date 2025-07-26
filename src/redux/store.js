@@ -1,27 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
-import devicesReducer from './slices/devicesSlice';
-import facilitiesReducer from './slices/facilitiesSlice';
-import visitsReducer from './slices/visitsSlice';
-import contractsReducer from './slices/contractsSlice';
-import alertsReducer from './slices/alertsSlice';
-import installationsReducer from './slices/installationsSlice';
+import devicesReducer from "./slices/devicesSlice";
+import facilitiesReducer from "./slices/facilitiesSlice";
+import visitsReducer from "./slices/visitsSlice";
+import contractsReducer from "./slices/contractsSlice";
+import alertsReducer from "./slices/alertsSlice";
+import installationsReducer from "./slices/installationsSlice";
 const PERSISTED_KEYS = [
-    'devices',
-  'facilities',
-  'visits',
-  'contracts',
-  'alerts',
-  'installations',
-]
+  "devices",
+  "facilities",
+  "visits",
+  "contracts",
+  "alerts",
+  "installations",
+];
 
 function loadState() {
   try {
-    const serializedState = localStorage.getItem('reduxState');
+    const serializedState = localStorage.getItem("reduxState");
     if (!serializedState) return undefined;
     const state = JSON.parse(serializedState);
-    // Only return persisted keys
     return Object.fromEntries(
-      PERSISTED_KEYS.map(key => [key, state[key] || undefined])
+      PERSISTED_KEYS.map((key) => [key, state[key] || undefined])
     );
   } catch (e) {
     return undefined;
@@ -31,9 +30,9 @@ function loadState() {
 function saveState(state) {
   try {
     const toPersist = Object.fromEntries(
-      PERSISTED_KEYS.map(key => [key, state[key]])
+      PERSISTED_KEYS.map((key) => [key, state[key]])
     );
-    localStorage.setItem('reduxState', JSON.stringify(toPersist));
+    localStorage.setItem("reduxState", JSON.stringify(toPersist));
   } catch (e) {}
 }
 
@@ -53,4 +52,4 @@ store.subscribe(() => {
   saveState(store.getState());
 });
 
-export default store; 
+export default store;
