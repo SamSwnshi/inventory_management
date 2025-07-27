@@ -59,12 +59,18 @@ function AMCTracker({ role }) {
           As a Technician, you can only view and export contracts.
         </Alert>
       )}
-      <AMCContractsTable
-        contracts={contracts}
-        onEdit={role === 'Admin' ? handleEdit : undefined}
-        onDelete={role === 'Admin' ? handleDelete : undefined}
-        sx={{ overflowX: 'auto', color: 'inherit' }}
-      />
+      {role === 'Admin' ? (
+        <AMCContractsTable
+          contracts={contracts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          sx={{ overflowX: 'auto', color: 'inherit' }}
+        />
+      ) : (
+        <Alert severity="info" sx={{ mb: 2 }}>
+          You do not have access to view AMC/CMC contracts.
+        </Alert>
+      )}
       {role === 'Admin' && (
         <AMCContractForm
           open={formOpen}

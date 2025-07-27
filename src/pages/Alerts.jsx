@@ -57,12 +57,18 @@ function Alerts({ role }) {
           As a Technician, you can only view alerts and photo logs.
         </MuiAlert>
       )}
-      <AlertsTable
-        alerts={alerts}
-        onEdit={role === 'Admin' ? handleEdit : undefined}
-        onDelete={role === 'Admin' ? handleDelete : undefined}
-        sx={{ overflowX: 'auto', color: 'inherit' }}
-      />
+      {role === 'Admin' ? (
+        <AlertsTable
+          alerts={alerts}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          sx={{ overflowX: 'auto', color: 'inherit' }}
+        />
+      ) : (
+        <MuiAlert severity="info" sx={{ mb: 2 }}>
+          You do not have access to view alerts and photo logs.
+        </MuiAlert>
+      )}
       {role === 'Admin' && (
         <AlertForm
           open={formOpen}

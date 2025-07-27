@@ -57,12 +57,18 @@ function ServiceLogs({ role }) {
           As a Technician, you can only view service visit logs.
         </Alert>
       )}
-      <ServiceVisitsTable
-        visits={visits}
-        onEdit={role === 'Admin' ? handleEdit : undefined}
-        onDelete={role === 'Admin' ? handleDelete : undefined}
-        sx={{ overflowX: 'auto' }}
-      />
+      {role === 'Admin' ? (
+        <ServiceVisitsTable
+          visits={visits}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          sx={{ overflowX: 'auto' }}
+        />
+      ) : (
+        <Alert severity="info" sx={{ mb: 2 }}>
+          You do not have access to view service visit logs.
+        </Alert>
+      )}
       {role === 'Admin' && (
         <ServiceVisitForm
           open={formOpen}

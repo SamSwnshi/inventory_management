@@ -65,12 +65,18 @@ function DeviceInventory({ role }) {
           As a Technician, you can only view device inventory.
         </Alert>
       )}
-      <DeviceTable
-        devices={devices}
-        onEdit={role === 'Admin' ? handleEdit : undefined}
-        onDelete={role === 'Admin' ? handleDelete : undefined}
-        sx={{ overflowX: 'auto' }}
-      />
+      {role === 'Admin' ? (
+        <DeviceTable
+          devices={devices}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          sx={{ overflowX: 'auto' }}
+        />
+      ) : (
+        <Alert severity="info" sx={{ mb: 2 }}>
+          You do not have access to view device inventory.
+        </Alert>
+      )}
       <DeviceForm
         open={formOpen}
         onClose={handleFormClose}
