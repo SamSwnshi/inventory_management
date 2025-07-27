@@ -1,7 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  alerts: [],
+  alerts: [
+    {
+      id: 'alert1',
+      deviceId: 'DEV-001',
+      date: '2024-05-10',
+      type: 'Battery Low',
+      description: 'Battery below 20%.',
+      photo: 'battery_low.jpg',
+      status: 'Open'
+    },
+    {
+      id: 'alert2',
+      deviceId: 'DEV-002',
+      date: '2024-05-12',
+      type: 'Physical Damage',
+      description: 'Crack on device casing.',
+      photo: 'damage_photo.jpg',
+      status: 'Resolved'
+    }
+  ],
 };
 
 const alertsSlice = createSlice({

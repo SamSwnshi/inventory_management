@@ -1,7 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  visits: [],
+  visits: [
+    {
+      id: 'visit1',
+      deviceId: 'DEV-001',
+      date: '2024-05-01',
+      engineer: 'Alice Smith',
+      purpose: 'Preventive',
+      notes: 'Routine check. All parameters normal.',
+      attachments: ['service_report1.pdf']
+    },
+    {
+      id: 'visit2',
+      deviceId: 'DEV-002',
+      date: '2024-05-05',
+      engineer: 'Bob Lee',
+      purpose: 'Breakdown',
+      notes: 'Battery replaced. Device back online.',
+      attachments: []
+    }
+  ],
 };
 
 const visitsSlice = createSlice({
